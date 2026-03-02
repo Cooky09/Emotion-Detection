@@ -1,25 +1,42 @@
-🎭 Emotion Detection AI
+🎭 Emotion Detection AI (Real-Time Webcam Based)
 
-A real-time emotion detection system using a webcam feed, built with FastAPI for the backend and React for the frontend. Detects human emotions from faces and overlays emojis corresponding to the detected emotion. Captured frames and predictions can also be logged for analysis.
+A full-stack real-time Emotion Detection Web Application that uses a webcam feed to detect facial emotions and display corresponding emojis live on the screen.
 
-Features
+This project combines:
 
-Real-time face detection and emotion recognition from webcam.
+🧠 Machine Learning (Emotion Classification)
 
-Emoji overlay on live video according to detected emotion.
+🎥 OpenCV Face Detection
 
-Confidence threshold to control when emojis appear.
+⚡ FastAPI Backend
 
-Optional logging: save captured frames with emotion predictions in a CSV.
+⚛️ React Frontend
 
-Easy-to-use frontend with live webcam feed.
+📊 Optional CSV Logging for captured predictions
 
-Demo Screenshot
+📌 What This Project Does
 
+Captures webcam frames in the browser (React frontend).
 
-(Replace with an actual screenshot of your app with emojis overlaid.)
+Sends frames to a FastAPI backend.
 
-Supported Emotions
+Backend detects faces using OpenCV.
+
+Emotion model predicts emotion per detected face.
+
+The frontend overlays the corresponding emoji on the video feed.
+
+(Optional) Saves captured images and logs predictions in CSV format.
+
+🎬 Live Features
+
+✅ Real-time webcam emotion detection
+✅ Emoji overlay (😄 😢 😠 😐 😲 😨 🤢)
+✅ Adjustable confidence threshold
+✅ Handles no-face detection safely
+✅ Optional dataset logging for captured frames
+
+🧠 Supported Emotions
 Emotion	Emoji
 Happy	😄
 Sad	😢
@@ -28,49 +45,98 @@ Neutral	😐
 Surprise	😲
 Fear	😨
 Disgust	🤢
-Tech Stack
+🏗️ Project Architecture
+Frontend (React)
+        ↓
+Captures Webcam Frame
+        ↓
+POST /detect
+        ↓
+Backend (FastAPI)
+        ↓
+OpenCV Face Detection
+        ↓
+Emotion Model Prediction
+        ↓
+Return JSON Response
+        ↓
+Frontend Displays Emoji Overlay
+📂 Project Structure
+Emotion-Detection/
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── routes.py
+│   │   ├── services/
+│   │   │   └── emotion_service.py
+│   │   └── main.py
+│   ├── captured_frames/        # Optional saved images + CSV
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── app.jsx
+│   ├── package.json
+│
+└── README.md
+⚙️ Prerequisites
 
-Backend: Python, FastAPI, OpenCV, NumPy
+Before running this project, make sure you have:
 
-Frontend: React, Axios
+Python 3.9+ installed
 
-Machine Learning: Your custom emotion detection model (can be trained or pre-trained)
+Node.js 16+ installed
 
-Backend
+npm or yarn
 
-Clone the repo:
+A working webcam
 
-git clone https://github.com/your-username/emotion-detection-ai.git
-cd emotion-detection-ai/backend
+pip (Python package manager)
 
-Create a virtual environment:
-
+🚀 Backend Setup (FastAPI)
+1️⃣ Navigate to Backend
+cd backend
+2️⃣ Create Virtual Environment
+Windows
 python -m venv .venv
-source .venv/bin/activate # Mac/Linux
-.venv\Scripts\activate    # Windows
-
-Install dependencies:
-
+.venv\Scripts\activate
+Mac/Linux
+python3 -m venv .venv
+source .venv/bin/activate
+3️⃣ Install Dependencies
 pip install -r requirements.txt
 
-Run the FastAPI server:
+If you don’t have requirements.txt, install manually:
 
+pip install fastapi uvicorn opencv-python numpy python-multipart
+4️⃣ Start Backend Server
 uvicorn app.main:app --reload
 
-The backend will start at: http://127.0.0.1:8000
+Backend runs at:
 
-Frontend
+http://127.0.0.1:8000
 
-Navigate to the frontend folder:
+Test health endpoint:
 
-cd ../frontend
+http://127.0.0.1:8000/health
 
-Install dependencies:
+You should see:
 
+{"status":"healthy"}
+💻 Frontend Setup (React)
+1️⃣ Navigate to Frontend
+cd frontend
+2️⃣ Install Dependencies
 npm install
-# or
+
+or
+
 yarn install
+3️⃣ Start Frontend
+npm start
 
-Start the frontend:
+Open:
 
-npm run dev
+http://localhost:3000
+
+Allow webcam permission when prompted.
