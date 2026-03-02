@@ -1,91 +1,59 @@
-🎭 Emotion Detection AI (Real-Time Webcam Based)
+**🎭 Emotion Detection AI**
 
-A full-stack real-time Emotion Detection Web Application that uses a webcam feed to detect facial emotions and display corresponding emojis live on the screen.
+A real-time Emotion Detection Web Application that captures webcam input, detects facial emotions using a FastAPI backend, and overlays corresponding emojis on the live video feed using React.
 
-This project combines:
+This project demonstrates full-stack integration between computer vision, machine learning, and a modern frontend interface.
 
-🧠 Machine Learning (Emotion Classification)
+**🚀 Features**
 
-🎥 OpenCV Face Detection
+🎥 Real-time webcam emotion detection
 
-⚡ FastAPI Backend
+😀 Live emoji overlay based on detected emotion
 
-⚛️ React Frontend
+📊 Adjustable confidence threshold
 
-📊 Optional CSV Logging for captured predictions
+🧠 Face detection using OpenCV
 
-📌 What This Project Does
+⚡ FastAPI backend API
 
-Captures webcam frames in the browser (React frontend).
+⚛️ React frontend
 
-Sends frames to a FastAPI backend.
+📝 Optional CSV logging for captured frames
 
-Backend detects faces using OpenCV.
-
-Emotion model predicts emotion per detected face.
-
-The frontend overlays the corresponding emoji on the video feed.
-
-(Optional) Saves captured images and logs predictions in CSV format.
-
-🎬 Live Features
-
-✅ Real-time webcam emotion detection
-✅ Emoji overlay (😄 😢 😠 😐 😲 😨 🤢)
-✅ Adjustable confidence threshold
-✅ Handles no-face detection safely
-✅ Optional dataset logging for captured frames
-
-🧠 Supported Emotions
+**🧠 Supported Emotions**
 Emotion	Emoji
 Happy	😄
 Sad	😢
 Angry	😠
 Neutral	😐
-Surprise	😲
+Surprise😲
 Fear	😨
 Disgust	🤢
-🏗️ Project Architecture
-Frontend (React)
-        ↓
+
+**🏗️ Project Architecture**
+
+React Frontend
+      ↓
 Captures Webcam Frame
-        ↓
-POST /detect
-        ↓
-Backend (FastAPI)
-        ↓
+      ↓
+POST /detect (FastAPI)
+      ↓
 OpenCV Face Detection
-        ↓
+      ↓
 Emotion Model Prediction
-        ↓
-Return JSON Response
-        ↓
-Frontend Displays Emoji Overlay
-📂 Project Structure
-Emotion-Detection/
-│
-├── backend/
-│   ├── app/
-│   │   ├── api/
-│   │   │   └── routes.py
-│   │   ├── services/
-│   │   │   └── emotion_service.py
-│   │   └── main.py
-│   ├── captured_frames/        # Optional saved images + CSV
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── app.jsx
-│   ├── package.json
-│
-└── README.md
-⚙️ Prerequisites
+      ↓
+JSON Response
+      ↓
+Emoji Overlay on Video
 
-Before running this project, make sure you have:
+**⚙️ Installation Guide**
+✅ Prerequisites
 
-Python 3.9+ installed
+Make sure you have installed:
 
-Node.js 16+ installed
+Python 3.9+
+
+Node.js 16+
 
 npm or yarn
 
@@ -93,8 +61,8 @@ A working webcam
 
 pip (Python package manager)
 
-🚀 Backend Setup (FastAPI)
-1️⃣ Navigate to Backend
+🔧 Backend Setup (FastAPI)
+1️⃣ Navigate to Backend Folder
 cd backend
 2️⃣ Create Virtual Environment
 Windows
@@ -104,12 +72,15 @@ Mac/Linux
 python3 -m venv .venv
 source .venv/bin/activate
 3️⃣ Install Dependencies
+
+If requirements.txt exists:
+
 pip install -r requirements.txt
 
-If you don’t have requirements.txt, install manually:
+Otherwise install manually:
 
 pip install fastapi uvicorn opencv-python numpy python-multipart
-4️⃣ Start Backend Server
+4️⃣ Run Backend Server
 uvicorn app.main:app --reload
 
 Backend runs at:
@@ -120,7 +91,7 @@ Test health endpoint:
 
 http://127.0.0.1:8000/health
 
-You should see:
+Expected response:
 
 {"status":"healthy"}
 💻 Frontend Setup (React)
@@ -139,4 +110,31 @@ Open:
 
 http://localhost:3000
 
-Allow webcam permission when prompted.
+Allow webcam access when prompted.
+
+🎛️ Configuration
+🔹 Adjust Confidence Threshold
+
+Open frontend/app.jsx and modify:
+
+const CONFIDENCE_THRESHOLD = 50;
+Value	Behavior
+0	Shows emoji for all detections
+30	Moderate strictness
+50	Balanced
+70+	Only very confident predictions
+🔹 Optional CSV Logging
+
+If logging is enabled in the backend:
+
+Captured frames are saved in:
+
+backend/captured_frames/
+
+Predictions are stored in:
+
+emotions.csv
+
+CSV format:
+
+filename,emotion,confidence,emoji
