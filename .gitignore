@@ -1,0 +1,34 @@
+# Node
+node_modules/
+frontend/node_modules/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Runtime/generated files
+backend/captured_frames/
+emotions.csv
+*.log
+
+# Python model/cache files
+*.h5
+*.keras
+*.pth
+*.pt
+*.pkl
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
