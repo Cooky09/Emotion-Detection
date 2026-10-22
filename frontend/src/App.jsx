@@ -18,6 +18,8 @@ export default function App() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
+  const [cameraStatus, setCameraStatus] = useState("starting");
+
   const [emotionData, setEmotionData] = useState({
     label: null,
     emoji: null,
@@ -97,10 +99,12 @@ export default function App() {
       .then((stream) => {
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
+          setCameraStatus("ready");
         }
       })
       .catch((err) => {
         console.error("Camera error:", err);
+        setCameraStatus("error");
       });
 
     const interval = setInterval(captureAndSend, 1000);
@@ -120,6 +124,14 @@ export default function App() {
   return (
     <div style={styles.container}>
       <h1>Emotion Detection AI 🎭</h1>
+
+      {cameraStatus === "starting" && (
+        <p style={styles.status}>Starting camera...</p>
+      )}
+
+      {cameraStatus === "error" && (
+        <p style={styles.error}>Camera unavailable</p>
+      )}
 
       <div style={styles.videoContainer}>
         <video
@@ -156,6 +168,16 @@ const styles = {
     textAlign: "center",
     fontFamily: "Arial",
     padding: "20px",
+  },
+
+  status: {
+    fontSize: "18px",
+    marginBottom: "15px",
+  },
+
+  error: {
+    fontSize: "18px",
+    marginBottom: "15px",
   },
 
   videoContainer: {
