@@ -8,3 +8,4 @@ torchvision
 transformers
 python-multipart
 pydantic
+pytest
