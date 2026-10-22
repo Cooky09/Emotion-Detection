@@ -21,6 +21,9 @@ class FaceDetector:
             minNeighbors=5
         )
 
-        # Scale back to original size
-        faces = [(int(x*2), int(y*2), int(w*2), int(h*2)) for (x, y, w, h) in faces]
+        faces = [
+            (int(x * 2), int(y * 2), int(w * 2), int(h * 2))
+            for (x, y, w, h) in faces
+        ]
+
         return faces
