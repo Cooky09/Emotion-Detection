@@ -55,4 +55,8 @@ class EmotionService:
 
         except Exception as e:
             print("ERROR in detect:", str(e))
-            return {"face_count": 0, "predictions": []}
+            return {
+                "face_count": 0,
+                "predictions": [],
+                "error": "Emotion detection failed",
+            }
